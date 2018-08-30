@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>画布</title>
+    <link rel="stylesheet" href="./stylus/reset.css">
+    <link rel="stylesheet" href="./stylus/border.css">
+    <link rel="stylesheet" href="./stylus/main.css">
+    <script src="//at.alicdn.com/t/font_816080_o58bw0vq34r.js"></script>
+    <script src="./js/lib/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas">
+        您的浏览器不支持canvas
+    </canvas>
+    <div id="controller">
+        <svg id="pen" class="icon active">
+            <use xlink:href="#icon-pen"></use>
+        </svg>
+        <svg id="chineseBrush" class="icon">
+            <use xlink:href="#icon-brush1"></use>
+        </svg>
+        <svg id="brush" class="icon">
+            <use xlink:href="#icon-brush2"></use>
+        </svg>
+        <svg id="eraser" class="icon">
+            <use xlink:href="#icon-eraser1"></use>
+        </svg>
+        <svg id="clear" class="icon">
+            <use xlink:href="#icon-clear1"></use>
+        </svg>
+        <svg id="download" class="icon">
+                <use xlink:href="#icon-download"></use>
+        </svg>
+    </div>
+    <ol id="colors">
+        <li id="red_btn" class="color_btn color_btn_selected"></li>
+        <li id="green_btn" class="color_btn"></li>
+        <li id="blue_btn" class="color_btn"></li>
+        <li id="orange_btn" class="color_btn"></li>
+        <li id="yellow_btn" class="color_btn"></li>
+        <li id="black_btn" class="color_btn"></li>
+
+    </ol>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

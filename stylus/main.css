@@ -1,0 +1,75 @@
+body{
+    overflow: hidden;
+}
+#canvas{
+    /* background: red; */
+    display: block;
+    background: #def;
+
+}
+#controller {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    
+}
+
+#controller svg {
+    width: 2em;
+    height: 2em;
+    margin: 0px 10px;
+    transition:  all 0.3s;
+    cursor: pointer;
+}
+
+#controller svg.active {
+    fill: red;
+    transform: scale(1.2);
+   
+}
+
+
+
+#colors {
+    position: fixed;
+    top: 70px;
+    left: 10px;    
+}
+
+#colors .color_btn {
+
+    margin: 10px 0px;
+    border: 3px solid rgb(102, 120, 138);;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    
+    transition: all 0.3s;
+}
+
+
+#colors .color_btn_selected {
+    border: 3px solid blueviolet;
+}
+
+#red_btn {
+    background-color: red;
+}
+#green_btn {
+    background-color: green;
+}
+#blue_btn {
+    background-color: blue;
+}
+#orange_btn {
+    background-color: orange;
+}
+#yellow_btn {
+    background-color: yellow;
+}   
+#black_btn {
+    background-color: black;
+}
+
