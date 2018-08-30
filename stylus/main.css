@@ -7,6 +7,16 @@ body{
     background: #def;
 
 }
+.icon {
+    width: 2em;
+    height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+    cursor: pointer;
+    transition:  all 0.3s;
+}
+
 #controller {
     position: fixed;
     top: 0;
@@ -16,20 +26,14 @@ body{
 }
 
 #controller svg {
-    width: 2em;
-    height: 2em;
     margin: 0px 10px;
-    transition:  all 0.3s;
-    cursor: pointer;
+    
 }
 
 #controller svg.active {
     fill: red;
-    transform: scale(1.2);
-   
+    transform: scale(1.2);  
 }
-
-
 
 #colors {
     position: fixed;
@@ -73,3 +77,24 @@ body{
     background-color: black;
 }
 
+#operator {
+    position:  fixed;
+    right: 0px;
+    top: 70px;
+    right: 10px;  
+}
+
+#operator li {
+
+   margin-top: 10px;
+   margin-bottom: 20px;
+}
+
+#operator svg {
+    fill: rgba(0, 0, 0, 0.4)
+}
+
+#operator .operator_selective {
+    fill: rgba(0, 0, 0, 1);
+    transform: scale(1.2);
+}

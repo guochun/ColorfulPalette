@@ -12,6 +12,7 @@
     var lastLineWidth = -1;
     var strokeColor = "red";
     var drawType = "pen";
+    var isWriting = false;
 
     var curSelectTool = $('#pen');
 
@@ -47,6 +48,44 @@
 
     }
 
+    function drawGrid(color) {
+
+       
+        var width = canvasWidth - 120;
+        var height = width;
+        var startPos = { x: 60, y: canvasHeight/2 - height / 2};
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(startPos.x, startPos.y);
+        ctx.lineTo(width + startPos.x, startPos.y);
+        ctx.lineTo(width + startPos.x, height + startPos.y);
+        ctx.lineTo(startPos.x, height + startPos.y);
+        ctx.closePath();
+
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        ctx.moveTo(startPos.x, startPos.y);
+        ctx.lineTo(startPos.x + width, startPos.y + height);
+
+        ctx.moveTo(startPos.x + width, startPos.y);
+        ctx.lineTo(startPos.x, height + startPos.y);
+
+        ctx.moveTo(width/ 2 + startPos.x , startPos.y);
+        ctx.lineTo(width / 2 + startPos.x, height + startPos.y);
+
+        ctx.moveTo(startPos.x, height / 2 + startPos.y);
+        ctx.lineTo(width + startPos.x, height / 2 + startPos.y);
+
+        ctx.lineWidth = 1
+        ctx.stroke()
+
+        ctx.restore();
+    }
+
     function beginStrok(pos) {
         isMouseDown = true;
         lastLocation = windowToCanvas(pos.x, pos.y);
@@ -71,8 +110,8 @@
         isMouseDown = false;
     }
 
-    function useEraser(pos,offset) {
-        ctx.clearRect(pos.x-15 , pos.y-15, 30, 30);
+    function useEraser(pos, offset) {
+        ctx.clearRect(pos.x - 15, pos.y - 15, 30, 30);
     }
     //视口坐标转化为Canvas坐标
     function windowToCanvas(x, y) {
@@ -160,25 +199,25 @@
 
     $('#controller').css('width', canvasWidth + 'px');
 
-    $('#pen').click(function(e){
+    $('#pen').click(function (e) {
         isUseEraser = false;
         drawType = 'pen';
         curSelectTool.removeClass('active');
         $(this).addClass('active');
         curSelectTool = $(this)
-      
+
     });
 
-    $('#chineseBrush').click(function(e){
+    $('#chineseBrush').click(function (e) {
         isUseEraser = false;
         drawType = 'chineseBrush'
         curSelectTool.removeClass('active');
         $(this).addClass('active');
         curSelectTool = $(this)
-       
+
     });
 
-    $('#brush').click(function(e){
+    $('#brush').click(function (e) {
         isUseEraser = false;
         drawType = 'brush'
         curSelectTool.removeClass('active');
@@ -186,18 +225,21 @@
         curSelectTool = $(this)
     });
 
-    $('#eraser').click(function(e){
+    $('#eraser').click(function (e) {
         isUseEraser = true;
         curSelectTool.removeClass('active');
         $(this).addClass('active');
         curSelectTool = $(this)
     });
 
-    $('#clear').click(function() {
-        ctx.clearRect(0,0,canvasWidth,canvasHeight)
+    $('#clear').click(function () {
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+        if (isWriting) {
+            drawGrid('#777');
+        }
     });
 
-    $('#download').click(function() {
+    $('#download').click(function () {
         var url = canvas.toDataURL('image/png');
         var a = document.createElement('a');
         document.body.appendChild(a);
@@ -212,6 +254,21 @@
         $(this).addClass("color_btn_selected");
         strokeColor = $(this).css("background-color");
     })
+
+    $('#painting').click(function (e) {
+        $(this).addClass('operator_selective');
+        $('#writing').removeClass('operator_selective');
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+        isWriting = false;
+    });
+
+    $('#writing').click(function (e) {
+        $(this).addClass('operator_selective');
+        $('#painting').removeClass('operator_selective');
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+        drawGrid('#777');
+        isWriting = true;
+    });
 
 })(this);
 
