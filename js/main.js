@@ -53,7 +53,7 @@
        
         var width = canvasWidth - 120;
         var height = width;
-        var startPos = { x: 60, y: canvasHeight/2 - height / 2};
+        var startPos = { x: 60, y: 150};
         ctx.save();
         ctx.strokeStyle = color;
         ctx.beginPath();
@@ -86,12 +86,25 @@
         ctx.restore();
     }
 
+    function drawPoint(pos) {
+
+        ctx.beginPath();
+        ctx.fillStyle = strokeColor;
+        ctx.arc(pos.x, pos.y, 2, 0, Math.PI * 2, true)
+        ctx.fill();
+        ctx.closePath();
+
+    }
     function beginStrok(pos) {
         isMouseDown = true;
         lastLocation = windowToCanvas(pos.x, pos.y);
         lastTimeStep = new Date().getTime();
+        if(isUseEraser) return;
+        drawPoint(lastLocation);
     }
 
+
+    
     function moveStrok(pos) {
         var curLocation = windowToCanvas(pos.x, pos.y);
         var curTimeStep = new Date().getTime();
@@ -176,9 +189,11 @@
             }
             if (isUseEraser) {
                 useEraser(pos)
+                drawGrid('#777')
             }
             else {
                 moveStrok(pos);
+               
             }
         });
 
@@ -196,7 +211,7 @@
     }
 
     listenDrawEvent();
-
+    
     $('#controller').css('width', canvasWidth + 'px');
 
     $('#pen').click(function (e) {

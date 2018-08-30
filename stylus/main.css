@@ -1,11 +1,9 @@
 body{
     overflow: hidden;
+    background: #def;
 }
 #canvas{
-    /* background: red; */
     display: block;
-    background: #def;
-
 }
 .icon {
     width: 2em;
